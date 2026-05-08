@@ -1,0 +1,68 @@
+body {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: #0f172a; /* Azul marinho profundo */
+    overflow: hidden;
+}
+
+.container {
+    position: relative;
+    width: 600px;
+    height: 150px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* A Prancha */
+.gangorra {
+    position: relative;
+    width: 100%;
+    height: 12px;
+    background: #f8fafc;
+    border-radius: 6px;
+    transform-origin: center;
+    /* Animação de inclinação invertida */
+    animation: inclinacaoInvertida 4s ease-in-out infinite;
+}
+
+/* O Hexágono */
+.hexagono {
+    position: absolute;
+    bottom: 12px;
+    width: 50px;
+    height: 50px;
+    background: #a855f7; /* Roxo vibrante */
+    clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+    /* Animação de rolagem */
+    animation: rolarInvertido 4s ease-in-out infinite;
+}
+
+/* 
+   LÓGICA INVERTIDA:
+   0%  -> Hexágono na ESQUERDA (left: 0) | Prancha SOBE na esquerda (+20deg)
+   50% -> Hexágono na DIREITA (left: 100%) | Prancha SOBE na direita (-20deg)
+*/
+
+@keyframes inclinacaoInvertida {
+    0%, 100% {
+        transform: rotate(20deg); /* Lado esquerdo para cima */
+    }
+    50% {
+        transform: rotate(-20deg); /* Lado direito para cima */
+    }
+}
+
+@keyframes rolarInvertido {
+    0%, 100% {
+        left: 0;
+        transform: rotate(0deg);
+    }
+    50% {
+        left: calc(100% - 50px);
+        transform: rotate(720deg);
+    }
+}
